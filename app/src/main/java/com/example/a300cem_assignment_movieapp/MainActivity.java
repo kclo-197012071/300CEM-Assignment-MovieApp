@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -14,10 +15,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mResultTv;
+    private TextView mTitleTv, mYearTv, mGenreTv, mDirectorTv, mActorsTv,  mDurationTv, mImdbRatingTv, mPlotTv;
+    private ImageView mPosterIv;
     private EditText mMovieNameEdt;
 
     @Override
@@ -25,10 +31,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mTitleTv = findViewById(R.id.tv_title);
+        mYearTv = findViewById(R.id.tv_year);
+        mGenreTv = findViewById(R.id.tv_genre);
+        mDirectorTv = findViewById(R.id.tv_director);
+        mActorsTv = findViewById(R.id.tv_actors);
+        mDurationTv = findViewById(R.id.tv_duration);
+        mImdbRatingTv = findViewById(R.id.tv_imdbRating);
+        mPlotTv = findViewById(R.id.tv_plot);
+        mPosterIv = findViewById(R.id.iv_poster);
         mMovieNameEdt = findViewById(R.id.edt_movieName);
-
-        mResultTv = findViewById(R.id.tv_result);
     }
+
     public void search(View view) {
 
         String mName = mMovieNameEdt.getText().toString();
@@ -46,18 +60,50 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        mResultTv.setText(response);
-                        Log.d("response:", response);
+
+                        try {
+                            JSONObject res_jsonObj = new JSONObject(response);
+                            String resResult = res_jsonObj.getString("Response");
+
+                            if(resResult.equals("True")) {
+                                String title = res_jsonObj.getString("Title");
+                                mTitleTv.setText("title: " + title);
+                                String year = res_jsonObj.getString("Year");
+                                mYearTv.setText("Year: " + year);
+                                String genre = res_jsonObj.getString("Genre");
+                                mGenreTv.setText("Genre: " + genre);
+                                String director = res_jsonObj.getString("Director");
+                                mDirectorTv.setText("Director: " + director);
+                                String actors = res_jsonObj.getString("Actors");
+                                mActorsTv.setText("Actors: " + actors);
+                                String duration = res_jsonObj.getString("Runtime");
+                                mDurationTv.setText("Duration: " + duration);
+                                String imdbRating = res_jsonObj.getString("imdbRating");
+                                mImdbRatingTv.setText("IMDB Rating: " + imdbRating);
+                                String plot = res_jsonObj.getString("Plot");
+                                mPlotTv.setText("Plot: " + plot);
+
+                                String posterURL = res_jsonObj.getString("Poster");
+                                if (!posterURL.equals("N/A")) {
+                                    Picasso.get().load(posterURL).into(mPosterIv);
+                                }
+
+                            } else {
+                                Log.d("response:", response);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mResultTv.setText("That didn't work!");
+                mYearTv.setText("That didn't work!");
             }
         });
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
 }

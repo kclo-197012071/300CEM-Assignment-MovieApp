@@ -10,6 +10,7 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Movie Name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"/>
 
         <Button
             android:id="@+id/button"
@@ -35,9 +36,57 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_result"
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Result" />
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year" />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genre" />
+
+    <TextView
+        android:id="@+id/tv_director"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Director" />
+
+    <TextView
+        android:id="@+id/tv_actors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actors" />
+
+    <TextView
+        android:id="@+id/tv_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duration" />
+
+    <TextView
+        android:id="@+id/tv_imdbRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ImDb Rating" />
+
+    <TextView
+        android:id="@+id/tv_plot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/iv_poster"
+        android:layout_width="match_parent"
+        android:layout_height="341dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 
 </LinearLayout>
