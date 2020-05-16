@@ -21,8 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +28,6 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private EditText mMovieNameEdt;
     private ListView mMovieListLv;
@@ -45,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mMovieNameEdt = findViewById(R.id.edt_movieName);
-
         mMovieListLv = (ListView) findViewById(R.id.lv_movieList);
+
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
     }
 
     public void search(View view) {
@@ -62,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-
         // Instantiate the RequestQueue.
         queue = Volley.newRequestQueue(this);
         String url = "https://www.omdbapi.com/?s=" + mName + "&plot=full&page=1&apikey=cac49838";
+        Log.d("url: ", url);
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -75,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             JSONObject res_jsonObj = new JSONObject(response);
-                            Log.d("res_jsonObj:", String.valueOf(res_jsonObj));
                             JSONArray res_jsonArrOfSearch = res_jsonObj.getJSONArray("Search");
                             int jsonArrLength = res_jsonArrOfSearch.length();
                             int objNum = 2; // imdbID, title (year)
@@ -87,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                                 String year = jsonObjOfJsonArrOfSearch.getString("Year");
                                 String imdbID = jsonObjOfJsonArrOfSearch.getString("imdbID");
                                 String posterURL = jsonObjOfJsonArrOfSearch.getString("Poster");
-                                Log.d("Arr:", title+year+imdbID+posterURL);
 
                                 searchedMovieArr[i][0]= imdbID;//your value
                                 searchedMovieArr[i][1]= title + " | " + year;

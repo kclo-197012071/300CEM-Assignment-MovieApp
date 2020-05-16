@@ -55,6 +55,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         String url = "https://www.omdbapi.com/?i=" + id + "&plot=full&apikey=cac49838";
         Log.d("url: ", url);
+
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
