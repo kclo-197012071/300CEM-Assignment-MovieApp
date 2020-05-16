@@ -32,6 +32,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mTitleTv = findViewById(R.id.tv_title);
         mYearTv = findViewById(R.id.tv_year);
