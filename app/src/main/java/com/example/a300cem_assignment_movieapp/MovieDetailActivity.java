@@ -2,8 +2,10 @@ package com.example.a300cem_assignment_movieapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,10 +22,17 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 public class MovieDetailActivity extends AppCompatActivity {
 
     private String imdbID;
     private RequestQueue queue;
+    private StringBuilder outputData = new StringBuilder();
 
     private TextView mTitleTv, mYearTv, mGenreTv, mDirectorTv, mActorsTv,  mDurationTv, mImdbRatingTv, mPlotTv;
     private ImageView mPosterIv;
@@ -69,7 +78,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                             if(resResult.equals("True")) {
 
                                 String title = res_jsonObj.getString("Title");
-                                mTitleTv.setText("title: " + title);
+                                mTitleTv.setText("Title: " + title);
                                 String year = res_jsonObj.getString("Year");
                                 mYearTv.setText("Year: " + year);
                                 String genre = res_jsonObj.getString("Genre");
@@ -90,6 +99,18 @@ public class MovieDetailActivity extends AppCompatActivity {
                                     Picasso.get().load(posterURL).into(mPosterIv);
                                 }
 
+                                // Append text for output file
+                                outputData.append(mTitleTv.getText().toString() + "\n");
+                                outputData.append(mYearTv.getText().toString() + "\n");
+                                outputData.append(mGenreTv.getText().toString() + "\n");
+                                outputData.append(mDirectorTv.getText().toString() + "\n");
+                                outputData.append(mActorsTv.getText().toString() + "\n");
+                                outputData.append(mDurationTv.getText().toString() + "\n");
+                                outputData.append(mImdbRatingTv.getText().toString() + "\n");
+                                outputData.append(mPlotTv.getText().toString() + "\n");
+                                outputData.append("Poster: " + posterURL);
+                                Log.d("outputData: ", outputData.toString());
+
                             } else {
                                 Log.d("response:", response);
                             }
@@ -106,5 +127,44 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+
+        // Do somethings after Volley sending the request is finished
+        queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                writeDataToFile(outputData.toString());
+            }
+        });
+
+    }
+
+    private void writeDataToFile(String data) {
+        /**
+         * Default output path as /data/data/com.example.a300cem_assignment_movieapp/files
+         */
+
+        String filename = "Movie_Detail.txt";
+        FileOutputStream outputStream = null;
+        BufferedWriter writer = null;
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+            writer.write(data);
+            Toast.makeText(MovieDetailActivity.this, "Details of the selected movie were stored in local.", Toast.LENGTH_SHORT).show();
+            Log.d("writeDataToFile: ", "writeDataToFile successful");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

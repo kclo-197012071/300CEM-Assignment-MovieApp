@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterView.OnItemClickListener onClickListView = new AdapterView.OnItemClickListener(){
         @Override
         public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
-            Toast.makeText(MainActivity.this,"Movie Name: "+searchedMovieArr[position][1] + "\nID: " + searchedMovieArr[position][0], Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this,"Movie Name: "+searchedMovieArr[position][1] + "\nID: " + searchedMovieArr[position][0], Toast.LENGTH_SHORT).show();
 
             Intent myIntent = new Intent(view.getContext(), MovieDetailActivity.class);
             myIntent.putExtra("imdbID", searchedMovieArr[position][0]);
