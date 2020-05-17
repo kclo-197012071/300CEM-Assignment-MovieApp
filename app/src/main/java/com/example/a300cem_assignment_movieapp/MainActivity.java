@@ -29,6 +29,8 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String APIKEY = "cac49838";
+
     private EditText mMovieNameEdt;
     private ListView mMovieListLv;
 
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Instantiate the RequestQueue.
         queue = Volley.newRequestQueue(this);
-        String url = "https://www.omdbapi.com/?s=" + mName + "&plot=full&page=1&apikey=cac49838";
+        String url = "https://www.omdbapi.com/?s=" + mName + "&plot=full&page=1&apikey=" + APIKEY;
         Log.d("url: ", url);
 
         // Request a string response from the provided URL.

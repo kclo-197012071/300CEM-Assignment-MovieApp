@@ -30,6 +30,8 @@ import java.io.OutputStreamWriter;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
+    private final String APIKEY = "cac49838";
+
     private String imdbID;
     private RequestQueue queue;
     private StringBuilder outputData = new StringBuilder();
@@ -62,7 +64,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     public void volley_newRequestQueue(String id) {
         // Instantiate the RequestQueue.
         queue = Volley.newRequestQueue(this);
-        String url = "https://www.omdbapi.com/?i=" + id + "&plot=full&apikey=cac49838";
+        String url = "https://www.omdbapi.com/?i=" + id + "&plot=full&apikey=" + APIKEY;
         Log.d("url: ", url);
 
         // Request a string response from the provided URL.
