@@ -19,11 +19,14 @@ public class MovieListAdapter extends BaseAdapter {
         TextView mSearchedMovieInfo_tv;
     }
 
-    //Initialization
     public MovieListAdapter(String[][] data, LayoutInflater inflater) {
         this.mMovieListArr = data;
         this.inflater = inflater;
         indentionBase = 100;
+    }
+
+    public MovieListAdapter(String[][] data) {
+        this.mMovieListArr = data;
     }
 
     @Override
