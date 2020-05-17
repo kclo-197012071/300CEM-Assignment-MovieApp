@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MovieApp</string>
+    <string name="app_name">電影快搜</string>
     <string name="title_activity_movie_detail">activity_movie_detail</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

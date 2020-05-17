@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieApp</string>
+    <string name="app_name">MovieSearch</string>
     <string name="title_activity_movie_detail">activity_movie_detail</string>
 
     <string name="next">Next</string>
