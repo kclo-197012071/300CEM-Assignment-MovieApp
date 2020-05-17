@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="title_activity_movie_detail">activity_movie_detail</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hint_edt_movie_name">英文電影名稱</string>
+    <string name="next">下一個</string>
+    <string name="previous">上一個</string>
+    <string name="btn_search">搜尋</string>
+    <string name="tv_rating">"ImDb 評分: "</string>
+    <string name="tv_plot">"情節: "</string>
+    <string name="tv_duration">"片長: "</string>
+    <string name="tv_director">"導演: "</string>
+    <string name="tv_actors">"主演: "</string>
+    <string name="tv_genre">"片種: "</string>
+    <string name="tv_title">"名稱: "</string>
+    <string name="tv_year">"上映年份: "</string>
+</resources>

@@ -78,25 +78,25 @@ public class MovieDetailActivity extends AppCompatActivity {
                             if(resResult.equals("True")) {
 
                                 String title = res_jsonObj.getString("Title");
-                                mTitleTv.setText("Title: " + title);
+                                mTitleTv.setText(getApplicationContext().getResources().getText(R.string.tv_title) + title);
                                 String year = res_jsonObj.getString("Year");
-                                mYearTv.setText("Year: " + year);
+                                mYearTv.setText(getApplicationContext().getResources().getText(R.string.tv_year) + year);
                                 String genre = res_jsonObj.getString("Genre");
-                                mGenreTv.setText("Genre: " + genre);
+                                mGenreTv.setText(getApplicationContext().getResources().getText(R.string.tv_genre) + genre);
                                 String director = res_jsonObj.getString("Director");
-                                mDirectorTv.setText("Director: " + director);
+                                mDirectorTv.setText(getApplicationContext().getResources().getText(R.string.tv_director) + director);
                                 String actors = res_jsonObj.getString("Actors");
-                                mActorsTv.setText("Actors: " + actors);
+                                mActorsTv.setText(getApplicationContext().getResources().getText(R.string.tv_actors) + actors);
                                 String duration = res_jsonObj.getString("Runtime");
-                                mDurationTv.setText("Duration: " + duration);
+                                mDurationTv.setText(getApplicationContext().getResources().getText(R.string.tv_duration) + duration);
                                 String imdbRating = res_jsonObj.getString("imdbRating");
-                                mImdbRatingTv.setText("IMDB Rating: " + imdbRating);
+                                mImdbRatingTv.setText(getApplicationContext().getResources().getText(R.string.tv_rating) + imdbRating);
                                 String plot = res_jsonObj.getString("Plot");
-                                mPlotTv.setText("Plot: " + plot);
+                                mPlotTv.setText(getApplicationContext().getResources().getText(R.string.tv_plot) + plot);
 
                                 String posterURL = res_jsonObj.getString("Poster");
                                 if (!posterURL.equals("N/A")) {
-                                    Picasso.get().load(posterURL).into(mPosterIv);
+                                    Picasso.get().load(posterURL).resize(600, 894).into(mPosterIv);
                                 }
 
                                 // Append text for output file
